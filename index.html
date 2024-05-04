@@ -9,26 +9,35 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
         <!-- CSS --> 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
         <header>
-            <i class="fa-solid fa-sun fa-lg" id="toggle-dark-mode"></i>
+            <i class="fa-solid fa-sun fa-lg" id="theme-toggle"></i>
             <h1 class="title">Find your film</h1>
             <a class="top-link" href="my-watchlist.html">My Watchlist</a>
         </header>
 
-        <section class="search-bar">
-            <input
-                class="search-movie-input"
-                id="search-movie-input"
+        <section>
+            <div class="search-bar">
+                <input
+                class="search-movie"
+                id="search-movie"
                 type="search"
-                placeholder="Blade Runner"
-                aria-label="Search for a movie">
-            <button>Search</button>
+                placeholder="Search for a movie"
+                aria-label="Blade Runner">
+            <button class="search-btn">Search</button>
+            </div>
         </section>
+
+        <main>
+            <div class="start-page">
+                <img src="assets/explore-icon.png" class="explore-icon">
+                <p>Start exploring</p>
+            </div>
+        </main>
 
         <script src="script.js" defer></script>
     </body>

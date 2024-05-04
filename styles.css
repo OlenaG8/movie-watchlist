@@ -1,0 +1,157 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #fff;
+    --font-color: #fff;
+
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --heading-color: #818cab;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --heading-color: #818cab;
+}
+
+body { 
+    background-color: var(--bg-color);
+    font-family: "Nunito", sans-serif;
+}
+
+/*--- typography ---*/
+
+header h1 { font-size: 2.3rem;}
+
+header a.top-link  { 
+    font-size: 1.3rem;
+    color: var(--font-color);
+}
+
+button.search-btn,
+input.search-movie { font-family: inherit;}
+
+div.start-page p { 
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/*--- layout--- */
+
+header {
+    display: grid;
+    padding: 0.7em;
+    color: var(--font-color);
+    background-image: url("assets/movie-theatre.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 25vh;
+    width: 100vw;
+}
+
+i {
+    padding-top: 1em;
+    justify-self: right;
+    cursor: pointer;
+}
+
+.search-bar { 
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 6vh;
+    top: 23vh;
+}
+
+input.search-movie,
+button.search-btn { height: 5vh;}
+
+input.search-movie {
+    width: 65vw;
+    padding-left: 2.5em;
+    border-radius: 5px 0 0 5px;
+
+    background-image: url("assets/search_icon.png");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: 25px;
+}
+
+button.search-btn {
+    width: 25vw;
+    padding: 0 1em;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+}
+
+div.start-page { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    height: 70vh;
+    width: 100vw;
+}
+
+@media (min-width:550px) and (max-width: 840px) {
+    header { 
+        grid-template-columns: auto auto;
+        padding: 1.5em;
+    }
+
+    header h1 { 
+        grid-column: 1;
+        font-size: 3rem;
+        place-self: center;
+    }
+
+    header a.top-link  { 
+        grid-column: -1;
+        font-size: 1.5rem; 
+        justify-self: right;
+        place-self: center;
+    }
+
+    i { grid-column: -1;}
+}
+
+@media (min-width: 840px) {
+
+    header h1 { 
+        grid-column: 1;
+        font-size: 4rem;
+        place-self: center;
+    }
+
+    header a.top-link  { 
+        grid-column: -1;
+        font-size: 2rem; 
+        justify-self: right;
+        place-self: center;
+    }
+
+    i { grid-column: -1;}
+
+    button.search-btn,
+    input.search-movie { font-size: 1.3rem;}
+
+    input.search-movie { width: 50vw;}
+    button.search-btn { width: 15vw;}    
+
+    header { 
+        grid-template-columns: auto auto;
+        padding: 1.5em;
+    }
+}
