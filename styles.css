@@ -9,20 +9,27 @@
 :root {
     --bg-color: #fff;
     --font-color: #fff;
+    --input-bg: #fff;
+    --input-txt: #A5A5A5;
+    --input-bg: #fff;
+    --exproring-txt: #DFDDDD;
+    --input-border: #D1D5DB;
+    --search-btn-bg: #F9FAFB;
+    --search-btn-txt: #374151;
 
-    --primary-color: #9A97F3;
-    --secondary-color: #818cab;
-    --heading-color: #818cab;
 }
 
 [data-theme="dark"] {
     --bg-color: #121212;
-    
-    --primary-color: #9A97F3;
-    --secondary-color: #818cab;
-    --font-color: #e1e1ff;
-    --heading-color: #818cab;
-}
+    --font-color: #fff;
+    --exproring-txt: #2E2E2F;
+    --input-border: #4B4B4B;
+    --search-btn-bg: #4B4B4B;
+    --search-btn-txt: #fff;
+
+    --input-txt: #A5A5A5;
+    --input-bg: #2E2E2F;
+} 
 
 body { 
     background-color: var(--bg-color);
@@ -42,6 +49,7 @@ button.search-btn,
 input.search-movie { font-family: inherit;}
 
 div.start-page p { 
+    color: var(--exproring-txt);
     font-size: 1.1rem;
     font-weight: 600;
 }
@@ -75,13 +83,17 @@ i {
 }
 
 input.search-movie,
-button.search-btn { height: 5vh;}
+button.search-btn { 
+    height: 5vh;
+    border: 1px solid var(--input-border)
+}
 
 input.search-movie {
     width: 65vw;
     padding-left: 2.5em;
     border-radius: 5px 0 0 5px;
-
+    color: var(--input-txt);
+    background-color: var(--input-bg);
     background-image: url("assets/search_icon.png");
     background-repeat: no-repeat;
     background-position-y: center;
@@ -91,6 +103,9 @@ input.search-movie {
 button.search-btn {
     width: 25vw;
     padding: 0 1em;
+    color: var(--search-btn-txt);
+    font-weight: 600;
+    background-color: var(--search-btn-bg);
     border-radius: 0 5px 5px 0;
     border-left: none;
 }
@@ -104,6 +119,13 @@ div.start-page {
     height: 70vh;
     width: 100vw;
 }
+
+img.explore-icon {
+    background-color: var(--exproring-txt);
+    mix-blend-mode: soft-light;
+    border-radius: 6px;
+}
+
 
 @media (min-width:550px) and (max-width: 840px) {
     header { 
