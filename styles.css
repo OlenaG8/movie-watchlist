@@ -31,7 +31,7 @@
     --search-btn-bg: #4B4B4B;
     --search-btn-txt: #fff;
     --button-hover-bg: #2C1821;
-    
+
     --exproring-txt: #2E2E2F;
 } 
 
@@ -135,13 +135,6 @@ div.start-page {
     height: 70vh;
     width: 100vw;
 }
-
-/* img.explore-icon {
-    background-color: var(--exproring-txt);
-    mix-blend-mode: soft-light;
-    border-radius: 6px;
-} */
-
 
 @media (min-width:550px) and (max-width: 840px) {
     header { 
