@@ -9,26 +9,30 @@
 :root {
     --bg-color: #fff;
     --font-color: #fff;
+
     --input-bg: #fff;
     --input-txt: #A5A5A5;
-    --input-bg: #fff;
-    --exproring-txt: #DFDDDD;
     --input-border: #D1D5DB;
+
     --search-btn-bg: #F9FAFB;
     --search-btn-txt: #374151;
+    --button-hover-bg: #897A7F;
 
+    --exproring-txt: #DFDDDD;
 }
 
 [data-theme="dark"] {
     --bg-color: #121212;
-    --font-color: #fff;
-    --exproring-txt: #2E2E2F;
+    
+    --input-bg: #2E2E2F;
+    --input-txt: #A5A5A5;
     --input-border: #4B4B4B;
+
     --search-btn-bg: #4B4B4B;
     --search-btn-txt: #fff;
-
-    --input-txt: #A5A5A5;
-    --input-bg: #2E2E2F;
+    --button-hover-bg: #2C1821;
+    
+    --exproring-txt: #2E2E2F;
 } 
 
 body { 
@@ -78,14 +82,15 @@ i {
     display: flex;
     justify-content: center;
     position: absolute;
-    height: 6vh;
+    height: 7vh;
     top: 23vh;
 }
 
 input.search-movie,
 button.search-btn { 
     height: 5vh;
-    border: 1px solid var(--input-border)
+    border: 1px solid var(--input-border);
+    box-shadow: 0 1px 1px var(--input-border);
 }
 
 input.search-movie {
@@ -100,6 +105,11 @@ input.search-movie {
     background-size: 25px;
 }
 
+input.search-movie:focus {
+    outline:none;
+    box-shadow: 0 0 4px var(--search-btn-txt);
+}
+
 button.search-btn {
     width: 25vw;
     padding: 0 1em;
@@ -108,6 +118,12 @@ button.search-btn {
     background-color: var(--search-btn-bg);
     border-radius: 0 5px 5px 0;
     border-left: none;
+}
+
+button.search-btn:hover,
+button.search-btn:active {
+    background-color: var(--button-hover-bg);
+    color: var(--font-color);
 }
 
 div.start-page { 
@@ -120,11 +136,11 @@ div.start-page {
     width: 100vw;
 }
 
-img.explore-icon {
+/* img.explore-icon {
     background-color: var(--exproring-txt);
     mix-blend-mode: soft-light;
     border-radius: 6px;
-}
+} */
 
 
 @media (min-width:550px) and (max-width: 840px) {
