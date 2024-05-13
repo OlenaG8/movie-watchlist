@@ -11,7 +11,7 @@
     --font-color: #fff;
 
     --input-bg: #fff;
-    --input-txt: #A5A5A5;
+    --input-txt: #374151;
     --input-border: #D1D5DB;
 
     --search-btn-bg: #F9FAFB;
@@ -71,7 +71,7 @@ header {
     width: 100vw;
 }
 
-i {
+header i {
     padding-top: 1em;
     justify-self: right;
     cursor: pointer;
@@ -111,11 +111,12 @@ input.search-movie:focus {
 }
 
 button.search-btn {
-    width: 25vw;
+    font-family: inherit;
     padding: 0 1em;
     color: var(--search-btn-txt);
     font-weight: 600;
     background-color: var(--search-btn-bg);
+    width: 25vw;
     border-radius: 0 5px 5px 0;
     border-left: none;
 }
@@ -134,6 +135,18 @@ div.start-page {
     gap: 1em;
     height: 70vh;
     width: 100vw;
+}
+
+
+div.movie-cont {
+    display: grid;
+    background-color: red;
+    padding: 1em;
+    width: 100vw;
+}
+
+img.movie-poster {
+    width: 32vw;
 }
 
 @media (min-width:550px) and (max-width: 840px) {
