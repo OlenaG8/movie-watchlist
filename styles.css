@@ -8,21 +8,28 @@
 
 :root {
     --bg-color: #fff;
-    --font-color: #fff;
+
+    --header-white-font: #fff;
+    --body-font: #111827;
+    --body-p-font: #6B7280;
 
     --input-bg: #fff;
-    --input-txt: #374151;
+    --input-txt: #6B7280;
     --input-border: #D1D5DB;
 
     --search-btn-bg: #F9FAFB;
     --search-btn-txt: #374151;
     --button-hover-bg: #897A7F;
 
+    --border-bottom: #E5E7EB;
     --exproring-txt: #DFDDDD;
 }
 
 [data-theme="dark"] {
     --bg-color: #121212;
+
+    --body-font: #FFFFFF;
+    --body-p-font: #A5A5A5;
     
     --input-bg: #2E2E2F;
     --input-txt: #A5A5A5;
@@ -32,12 +39,14 @@
     --search-btn-txt: #fff;
     --button-hover-bg: #2C1821;
 
+    --border-bottom: #2C2C2C;
     --exproring-txt: #2E2E2F;
 } 
 
 body { 
     background-color: var(--bg-color);
-    font-family: "Nunito", sans-serif;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.01em;
 }
 
 /*--- typography ---*/
@@ -46,30 +55,35 @@ header h1 { font-size: 2.3rem;}
 
 header a.top-link  { 
     font-size: 1.3rem;
-    color: var(--font-color);
+    color: var(--header-white-font);
 }
 
 button.search-btn,
 input.search-movie { font-family: inherit;}
 
-/* div.start-page p { 
+
+div.mov-headline h2 { font-size: 1.1rem;}
+div.mov-headline h3 { font-size: 0.6rem;}
+
+div.mov-details h4 { font-size: 0.6rem;}
+div.watchlist-btn h4 { font-size: 0.7rem; }
+
+div.start-page p { 
     color: var(--exproring-txt);
     font-size: 1.1rem;
     font-weight: 600;
-} */
-
-
-h4 { font-size: 0.6rem;}
-div.movie h6 { font-size: 0.5rem;}
-div.movie p { font-size: 0.7rem;}
-.watchlist-btn h4 { font-size: 0.8rem;}
+}
+div.movie-cont p { 
+    font-size: 0.7rem;
+    color: var(--body-p-font);
+}
 
 /*--- layout--- */
 
 header {
     display: grid;
     padding: 0.7em;
-    color: var(--font-color);
+    color: var(--header-white-font);
     background-image: url("assets/movie-theatre.jpg");
     background-position: center;
     background-size: cover;
@@ -130,9 +144,9 @@ button.search-btn {
 button.search-btn:hover,
 button.search-btn:active {
     background-color: var(--button-hover-bg);
-    color: var(--font-color);
+    color: var(--header-white-font);
 }
-/* 
+
 div.start-page { 
     display: flex;
     flex-direction: column;
@@ -141,36 +155,47 @@ div.start-page {
     gap: 1em;
     height: 70vh;
     width: 100vw;
-} */
-
-div.container {
-    width: 90%;
-    /* max-width: 900px; */
-    padding-top: 2em;
-    margin: 0 auto;
-    border-bottom: 1px solid var(--input-txt);
 }
 
-div.movie {
+
+div.movie-cont {
     display: grid;
-    grid-template-columns: 36vw auto 13vw;
-    grid-template-rows: repeat(5, auto);
+    grid-template-columns: 105px auto;
+    grid-template-rows: repeat(3, auto);
     gap: 0.5em;
+    width: 90%;
+    max-width: 900px;
+    padding: 0.7em 0;
+    margin: 2em auto;
+    border-bottom: 1px solid var(--border-bottom);
 }
 
 img.movie-poster {
     grid-row: 1 / -1;
-    width: 36vw;
+    width: 105px;
     border-radius: 5px;
 }
 
-div.movie p { grid-column: 2 / -1;}
-div.movie h6 { align-self: center;}
-.genre { grid-column: 2;}
-
-.watchlist-btn { 
+.mov-details,
+.mov-headline { 
     display: flex;
-    gap: 0.5em;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.7em;
+}
+
+div.movie-cont h2,
+div.movie-cont h3,
+div.movie-cont h4,
+div.watchlist-btn { 
+    font-weight: 400;
+    color: var(--body-font);
+    font-family: inherit;
+}
+
+div.watchlist-btn { 
+    display: flex;
+    gap: 0.3em;
 } 
 
 @media (min-width:550px) and (max-width: 840px) {
@@ -193,6 +218,7 @@ div.movie h6 { align-self: center;}
     }
 
     i { grid-column: -1;}
+
 }
 
 @media (min-width: 840px) {
@@ -213,7 +239,7 @@ div.movie h6 { align-self: center;}
     i { grid-column: -1;}
 
     button.search-btn,
-    input.search-movie { font-size: 1.3rem;}
+    input.search-movie { font-size: 1.2rem;}
 
     input.search-movie { width: 50vw;}
     button.search-btn { width: 15vw;}    
