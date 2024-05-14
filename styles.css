@@ -61,12 +61,11 @@ header a.top-link  {
 button.search-btn,
 input.search-movie { font-family: inherit;}
 
-
 div.mov-headline h2 { font-size: 1.1rem;}
 div.mov-headline h3 { font-size: 0.6rem;}
 
 div.mov-details h4 { font-size: 0.6rem;}
-div.watchlist-btn h4 { font-size: 0.7rem; }
+div.watchlist-btn h4 { font-size: 0.9rem; }
 
 div.start-page p { 
     color: var(--exproring-txt);
@@ -188,7 +187,7 @@ div.movie-cont h2,
 div.movie-cont h3,
 div.movie-cont h4,
 div.watchlist-btn { 
-    font-weight: 400;
+    font-weight: 500;
     color: var(--body-font);
     font-family: inherit;
 }
