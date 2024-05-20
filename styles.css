@@ -156,7 +156,8 @@ div.start-page {
     width: 100vw;
 }
 
-.found-movies {
+.found-movies,
+div.my-watchlist-con {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     width: 90vw;

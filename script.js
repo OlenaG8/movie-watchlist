@@ -4,10 +4,10 @@ const searchBtn = document.getElementById('search-btn')
 const userInput = document.getElementById('search-movie')
 
 const startPageCon = document.getElementById('start-page')
-
 const foundMovies = document.getElementById('found-movies')
-
 const myWatchlistCon = document.getElementById('my-watchlist-con')
+
+let moviesByIdMap = new Map()
 
 let moviesListArr = []
 let myWatchlist = []
@@ -15,12 +15,16 @@ let myWatchlist = []
 const themeToggle = document.getElementById('theme-toggle')
 const errMessage = `Unable to find what you're looking for. Please try again`
 
-document.addEventListener("click", (e) => {
-    if (e.target.dataset.movieid) {
-        console.log(e.target.dataset.movieid)
-        // addToMyWatchlist(e.target.dataset.movieid)
-     }
-}) 
+ document.addEventListener("click", (e) => {
+    if (e.target.id === 'search-btn') {
+        handleSearchBtn()
+    }
+
+     if (e.target.dataset.movieid) {
+         console.log(e.target.dataset.movieid)
+         addToMyWatchlist(moviesByIdMap.get(e.target.dataset.movieid))
+      }
+ }) 
 
 themeToggle.addEventListener("click", function(){
     const body = document.querySelector("body")
@@ -38,10 +42,9 @@ themeToggle.addEventListener("click", function(){
     }
 })
 
-searchBtn.addEventListener('click', async (e) => {
+async function handleSearchBtn() {
     startPageCon.style.display = 'flex'
     foundMovies.innerHTML = ''
-    e.preventDefault()
 
     await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=${apiKey}&s=${userInput.value}`)
         .then(res => res.json())
@@ -50,10 +53,9 @@ searchBtn.addEventListener('click', async (e) => {
             console.log(err)
             startPageCon.innerHTML = `<p>${errMessage}</p>`
         })
-})
+}
 
 async function getSearchDetails(movies) {
-    moviesListArr = []
 
     try {
         const moviePromises = movies.map(movie =>
@@ -62,6 +64,12 @@ async function getSearchDetails(movies) {
         )
 
         const moviesListArr = await Promise.all(moviePromises)
+
+        moviesByIdMap = new Map()        
+        for(let movie of moviesListArr) {
+            moviesByIdMap.set(movie.imdbID, movie)
+        } 
+
         render(moviesListArr)
 
     } catch (err) {
@@ -81,9 +89,9 @@ function getMovieHtml(movie) {
         <div class="mov-details">
             <h4>${movie.Genre}</h4>
             <h4>${movie.Runtime}</h4>
-            <div class="watchlist-btn">
+            <div class="watchlist-btn" id="btn-toggle-${movie.imdbID}">
                 <i class="fa-solid fa-circle-plus" data-movieid=${movie.imdbID}></i>
-                <h4 data-movieid=${movie.imdbID}>Watchlist</h4>
+                <h4 data-movieid=${movie.imdbID}">Watchlist</h4>
             </div>
         </div>
         <p>${movie.Plot}</p>
@@ -91,25 +99,32 @@ function getMovieHtml(movie) {
     `
 }
 
-function getMyWatchlistHtml() {
-    return `
-    <div class="movie-cont">
-        <img src="${movie.Poster}" class="movie-poster" alt="${movie.Title}">
-        <div class="mov-headline">
-            <h2>${movie.Title}</h2>
-            <h3>⭐${movie.imdbRating}</h3>
+function getAddOrRemoveHtml(movieId) {
+
+    if (isInWatchlist(movieId)) {
+        return `
+        <div class="watchlist-btn" id="btn-toggle-${movie.imdbID}">
+            <i class="fa-solid fa-circle-minus" data-movieid=${movie.imdbID}></i>
+            <h4 data-movieid=${movie.imdbID}">Remove</h4>
         </div>
-        <div class="mov-details">
-            <h4>${movie.Genre}</h4>
-            <h4>${movie.Runtime}</h4>
-            <div class="watchlist-btn">
-                <i class="fa-solid fa-circle-minus"></i>
-                <h4>Remove</h4>
-            </div>
-        </div>
-        <p>${movie.Plot}</p>
-     </div>
-    `
+        `
+    } else {
+        return `
+        <div class="watchlist-btn" id="btn-toggle-${movie.imdbID}">
+            <i class="fa-solid fa-circle-plus" data-movieid=${movie.imdbID}></i>
+            <h4 data-movieid=${movie.imdbID}">Watchlist</h4>
+        </div>`
+    }
+
+}
+
+function isInWatchlist(movieId) {
+    for (let movie of myWatchlist) {
+        if (movie.imdbID === movieId ) {
+            return true
+        }
+    }
+    return false
 }
 
 function render(movieArr) {
@@ -119,15 +134,35 @@ function render(movieArr) {
     foundMovies.innerHTML = html
 }
 
-function renderWatchlist() {
-    let html = "";
-    html += myWatchlistArr.map(getMyWatchlistHtml).join('');
-    myWatchlistCon.innerHTML = html;
+
+function addToMyWatchlist(movie) {
+    
+    if (myWatchlist.includes(movie)) {
+        alert("Already in your watchlist")
+    } else {
+        myWatchlist.push(movie)
+        updateLocStorage() 
+        renderWatchlist()
+    }
 }
 
-function addToWatchlist(id) {
-    
-    myWatchlist.push(movie)
-    updateLocalStorage()
-    renderWatchlist()
+function renderWatchlist() {
+    if (myWatchlistCon) {
+        startPageCon.style.display = 'none'
+        let html = ""
+        html += myWatchlist.map(getMovieHtml).join('')
+        myWatchlistCon.innerHTML = html
+    }
 }
+
+function updateLocStorage() {
+    localStorage.setItem("watchlist", JSON.stringify(myWatchlist))
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const storedWatchlist = localStorage.getItem("watchlist")
+    if (storedWatchlist) {
+        myWatchlist = JSON.parse(storedWatchlist)
+        renderWatchlist()
+    }
+})
