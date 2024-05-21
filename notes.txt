@@ -22,7 +22,8 @@ document.addEventListener("click", (e) => {
     else if (e.target.dataset.movieid) {
         const movieId = e.target.dataset.movieid
         toggleAddRemoveBtn(movieId)
-        addToOrRemoveFromWatchlist(movieId)
+        console.log(moviesByIdMap.get(movieId))
+        // addToOrRemoveFromWatchlist(moviesByIdMap.get(movieId))
     }
 })
 
@@ -113,20 +114,15 @@ function render(movieArr) {
     foundMovies.innerHTML = html
 }
 
-function addToOrRemoveFromWatchlist(id) {
-    const movieIndex = myWatchlist.findIndex(watchlistMovie => watchlistMovie.imdbID === id)
-    if (movieIndex === -1) {
-        addToWatchlist(id)
-    } else {
-        myWatchlist.splice(movieIndex, 1)
-        renderWatchlist()
-    }
-    updateLocStorage()
-}
-
-function addToWatchlist(id) {
-    const movie = moviesByIdMap.get(id)
-    myWatchlist.push(movie)
+function addToOrRemoveFromWatchlist(movie) {
+    console.log(movie)
+    // const movieIndex = myWatchlist.findIndex(watchlistMovie => watchlistMovie.imdbID === movie.imdbID)
+    // if (movieIndex === -1) {
+    //     myWatchlist.push(movie)
+    // } else {
+    //     myWatchlist.splice(movieIndex, 1)
+    // }
+    // updateLocStorage()
 }
 
 function toggleAddRemoveBtn(id) {
@@ -148,9 +144,6 @@ function renderWatchlist() {
         startPageCon.style.display = 'none'
         let html = myWatchlist.map(getMovieHtml).join('')
         myWatchlistCon.innerHTML = html
-    }
-    else if (myWatchlist.length == 0) {
-        startPageCon.style.display = 'flex'
     }
 }
 
