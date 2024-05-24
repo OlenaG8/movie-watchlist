@@ -26,6 +26,21 @@ document.addEventListener("click", (e) => {
     }
 })
 
+document.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        handleSearchBtn()
+    }
+})
+
+document.addEventListener("DOMContentLoaded", (e) => {
+    const storedWatchlist = localStorage.getItem("watchlist")
+    if (storedWatchlist) {
+        myWatchlist = JSON.parse(storedWatchlist) || []
+    }
+    renderWatchlist()
+})
+
 themeToggle.addEventListener("click", function() {
     const body = document.querySelector("body")
     const exploreIcon = document.getElementById("explore-icon")
@@ -157,11 +172,3 @@ function renderWatchlist() {
 function updateLocStorage() {
     localStorage.setItem("watchlist", JSON.stringify(myWatchlist))
 }
-
-document.addEventListener("DOMContentLoaded", (e) => {
-    const storedWatchlist = localStorage.getItem("watchlist")
-    if (storedWatchlist) {
-        myWatchlist = JSON.parse(storedWatchlist) || []
-    }
-    renderWatchlist()
-})
