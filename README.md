@@ -1,17 +1,7 @@
 # Movie Watchlist
 
 A solo project created as a part of Scrimba Frontend Development Course.
-<p>Deployed website: https://olenag8.github.io/movie-watchlist/ </p>
-
-<h3>Requirements:</h3>
-<li>Two pages - index.html and watchlist.html</li>
-<li>Index = search page. Calls to OMDB API with the title searched for and displays search results.</li>
-<li>Button to "add to watchlist" which saves that data to local storage.</li>
-<li>Watchlist.html loads and displays data from local storage</li>
-
-<h3>My enhancements:</h3>
-<li>Creating light and dark themes for the website.</li>
-<li>Allowing users to remove a movie right from the search page.</li>
+<p>Deployed website: https://olenag8.github.io/Momentum-clone-dashboard-extension/ </p>
 
 <h3>Quick start:</h3>
 
