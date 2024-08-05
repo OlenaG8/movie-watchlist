@@ -1,7 +1,7 @@
 # Movie Watchlist
 
 A solo project created as a part of Scrimba Frontend Development Course.
-<p>Deployed website: https://olenag8.github.io/Momentum-clone-dashboard-extension/ </p>
+<p>Deployed website: https://olenag8.github.io/movie-watchlist/ </p>
 
 <h3>Quick start:</h3>
 
